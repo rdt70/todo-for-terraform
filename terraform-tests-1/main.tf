@@ -19,13 +19,25 @@ data "todo_todo" "foreign" {
 }
 
 resource "todo_todo" "test1" {
-  count = 5
-  description = "${count.index}-1 ${var.purpose} todo"
+  count = 4
+  description = "${count.index}-1 ${var.purpose} todo (updated)"
   completed = false
 }
 
 resource "todo_todo" "test2" {
-  count = 5
+  count = 4
   description = "${count.index}-2 ${var.purpose} todo (linked to ${data.todo_todo.foreign.description})"
   completed = false
 }
+
+resource "todo_todo" "primary" {
+  description = "Existing Todo"
+  completed = true
+}
+
+resource "todo_todo" "primary1" {
+  description = "Existing Todo1"
+  completed = true
+}
+
+
